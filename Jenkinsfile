@@ -12,22 +12,18 @@ podTemplate(containers: [
         'https://github.com/dlambrig/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition.git'
       container('gradle') {
         stage('Build a gradle project') {
-          sh ''
-          '
+          sh '''
           cd Chapter08 / sample1
           chmod + x gradlew
-            . / gradlew test ''
-          '
+            . / gradlew test '''
         }
         stage("Code coverage") {
           try {
-            sh ''
-            '
+            sh '''
             pwd
             cd Chapter08 / sample1
               . / gradlew jacocoTestCoverageVerification
-              . / gradlew jacocoTestReport ''
-            '
+              . / gradlew jacocoTestReport '''
           } catch (Exception E) {
             echo 'Failure detected'
           }
